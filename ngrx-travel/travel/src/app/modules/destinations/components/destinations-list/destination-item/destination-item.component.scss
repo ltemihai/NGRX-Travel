@@ -1,0 +1,15 @@
+:host {
+    padding: 1rem;
+
+    .card-header {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        img {
+            height: 100%;
+            max-height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}
