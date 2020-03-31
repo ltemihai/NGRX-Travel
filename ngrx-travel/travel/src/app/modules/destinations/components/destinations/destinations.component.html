@@ -1,3 +1,9 @@
-<app-destinations-list [destinations]="destinations">
+<app-destinations-list [destinations]="destinations$ | async" *ngIf="!(isLoading$ | async);else loader">
 
 </app-destinations-list>
+
+<ng-template #loader>
+    <span class="spinner">
+    Loading...
+    </span>
+</ng-template>
