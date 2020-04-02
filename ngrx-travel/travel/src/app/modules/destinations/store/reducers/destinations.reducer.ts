@@ -2,20 +2,25 @@ import {IDestination} from "../../../commons/IDestination";
 import {Action, createReducer, on} from "@ngrx/store";
 
 import * as destinationActions from '../actions/destinations.actions';
+import {state} from "@angular/animations";
 
 export const DESTINATIONS_REDUCER_KEY = 'destinationsReducer';
 
 export interface DestinationsState {
     destinations: IDestination[];
     destination: IDestination;
-    isLoading: boolean;
+    isDestinationLoading: boolean;
+    isDestinationAdding: boolean
+    isDestinationAdded: boolean;
     error: any;
 }
 
 export const initialState: DestinationsState = {
     destinations: [],
     destination: null,
-    isLoading: false,
+    isDestinationLoading: false,
+    isDestinationAdding: false,
+    isDestinationAdded: false,
     error: null
 };
 
@@ -24,16 +29,32 @@ const destinationsReducer = createReducer(
     on(destinationActions.loadDestinations, state => ({
         ...state,
         destinations: [],
-        isLoading: true
+        isDestinationLoading: true
     })),
     on(destinationActions.loadDestinationsSuccess, (state, {data}) => ({
         ...state,
         destinations: data,
-        isLoading: false,
+        isDestinationLoading: false,
     })),
     on(destinationActions.loadDestinationsFailed, (state, {error}) =>({
         ...state,
-        isLoading: false,
+        isDestinationLoading: error,
+        error: error
+    })),
+    on(destinationActions.addDestination, state => ({
+        ...state,
+        isDestinationAdded: false,
+        isDestinationAdding: true,
+    })),
+    on(destinationActions.addDestinationSuccess, state => ({
+        ...state,
+        isDestinationAdded: true,
+        isDestinationAdding: false,
+    })),
+    on(destinationActions.addDestinationFailed, (state, {error}) => ({
+        ...state,
+        isDestinationAdded: false,
+        isDestinationAdding: false,
         error: error
     }))
 );

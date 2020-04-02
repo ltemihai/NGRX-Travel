@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IDestination} from "../../../../commons/IDestination";
+import { Component, Input, OnInit } from '@angular/core';
+import { IDestination } from '../../../../commons/IDestination';
 
 @Component({
   selector: 'app-destination-item',
@@ -9,6 +9,7 @@ import {IDestination} from "../../../../commons/IDestination";
 export class DestinationItemComponent implements OnInit {
 
     @Input() destination: IDestination;
+    @Input() loading: boolean;
 
     constructor() { }
 

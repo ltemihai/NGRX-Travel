@@ -1,9 +1,30 @@
+<div class="card">
+    <div class="card-header">Add Country</div>
+    <div class="card-block">
+        <form [formGroup]="countryForm">
+            <div style="display: flex" *ngIf="!(isDestinationAdding$ | async); else inputLoader">
+                <input clrInput placeholder="Name" name="input" [formControl]="countryForm.controls['name']" style="margin-right: 1rem">
+                <input clrInput placeholder="Flag URL" name="input" [formControl]="countryForm.controls['flag']">
+            </div>
+            <div style="margin-top: 1rem; display: flex; justify-content: flex-end">
+                <button class="btn btn-warning" (click)="submit()" [disabled]="!countryForm.valid || (isDestinationAdding$ | async)">Add Country</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
 <app-destinations-list [destinations]="destinations$ | async" *ngIf="!(isLoading$ | async);else loader">
 
 </app-destinations-list>
 
+<ng-template #inputLoader>
+    <span class="spinner spinner-input">
+    </span>
+</ng-template>
+
 <ng-template #loader>
-    <span class="spinner">
-    Loading...
+    <span class="spinner spinner-list">
     </span>
 </ng-template>

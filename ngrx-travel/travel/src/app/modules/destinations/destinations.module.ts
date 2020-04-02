@@ -10,15 +10,20 @@ import * as fromDestinations from './store/reducers/destinations.reducer'
 import {DestinationsService} from "./services/destinations.service";
 import {EffectsModule} from "@ngrx/effects";
 import {DestinationsEffects} from "./store/effects/destinations.effects";
+import {ClarityModule} from "@clr/angular";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [DestinationsComponent, DestinationsListComponent, DestinationItemComponent],
-  imports: [
-      CommonModule,
-      DestinationsRoutingModule,
-      StoreModule.forFeature(fromDestinations.DESTINATIONS_REDUCER_KEY, fromDestinations.reducer),
-      EffectsModule.forFeature([DestinationsEffects])
-  ],
+    imports: [
+        CommonModule,
+        DestinationsRoutingModule,
+        ClarityModule,
+        FormsModule,
+        ReactiveFormsModule,
+        StoreModule.forFeature(fromDestinations.DESTINATIONS_REDUCER_KEY, fromDestinations.reducer),
+        EffectsModule.forFeature([DestinationsEffects]),
+    ],
     providers: [DestinationsService]
 })
 export class DestinationsModule { }

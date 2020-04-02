@@ -33,3 +33,19 @@ export const loadDestinationFailed = createAction(
     '[Destinations] Load Destination Failure',
     props<{ error: any }>()
 );
+
+/// ADD DESTINATION ACTIONS
+export const addDestination = createAction(
+    '[Destinations] Add Destination',
+    props<{ data: IDestination }>()
+);
+
+export const addDestinationSuccess = createAction(
+    '[Destinations] Add Destination Success',
+);
+
+export const addDestinationFailed = createAction(
+    '[Destinations] Add Destination Failure',
+    props<{ error: any }>()
+);
+
